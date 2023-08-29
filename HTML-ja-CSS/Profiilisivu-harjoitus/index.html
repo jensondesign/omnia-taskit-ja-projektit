@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profiili</title>
+  </head>
+  <body>
+    <h1>Oma profiilini</h1>
+    <h2>Perustiedot</h2>
+    <p>
+      <b>Nimi: </b>Jeffrey Miller <br />
+      <b>Ikä: </b>24v <br />
+      <b>Paikkakunta: </b>Helsinki<br />
+    </p>
+    <h2>Harrastukset</h2>
+    <ul style="list-style-type: none; margin: 0px; padding: 0 0 0 1rem">
+      <li>Videopelit</li>
+      <li>Salitreeni 😎</li>
+      <li>Koodaaminen</li>
+    </ul>
+    <h2>Tilastotietoa</h2>
+    <table border="1">
+      <tr>
+        <td>Esimerkki 1</td>
+        <td>Arvo</td>
+      </tr>
+      <tr>
+        <td>Esimerkki 2</td>
+        <td>Arvo</td>
+      </tr>
+      <tr>
+        <td>Esimerkki 3</td>
+        <td>Arvo</td>
+      </tr>
+      <tr>
+        <td>Esimerkki 4</td>
+        <td>Arvo</td>
+      </tr>
+    </table>
+    <h2>Oma kuvaus</h2>
+    <p>
+      Olen puuhaillut tietokoneiden parissa ihan pienestä pitäen. Tällä hetkellä
+      työskentelen pelifirmassa koodarina.
+    </p>
+    <p>
+      Rakastan videopelejä. Suosikkigenreni ovat toimintapelit ja roolipelit.
+      Tietokoneella istumisen vastapainona harrastan lentopalloa, ja koirakin
+      raahaa mukanaan lenkille joka päivä.
+    </p>
+    <p>
+      Suosikkipelini on
+      <a href="https://en.wikipedia.org/wiki/The_Witcher_3:_Wild_Hunt"
+        >Witcher 3</a
+      >.
+    </p>
+    <img src="./Witcher-3-cover.jpg" alt="the witcher 3 wild hunt game cover" />
+
+    <form>
+      <fieldset>
+        <legend>Yhteydenotto</legend>
+        <label for="nimi">Nimi:</label>
+        <input type="text" id="nimi" name="nimi" /><br /><br />
+
+        <label>Sukupuoli:</label><br />
+        <input type="radio" name="sukupuoli" id="mies" value="mies" /><label
+          for="mies"
+          >Mies</label
+        ><br />
+        <input type="radio" name="sukupuoli" id="nainen" value="nainen" /><label
+          for="nainen"
+          >Nainen</label
+        ><br />
+        <input
+          type="radio"
+          name="sukupuoli"
+          id="en-halua-sanoa"
+          value="en-halua-sanoa" /><label for="en-halua-sanoa"
+          >En halua sanoa</label
+        ><br /><br />
+
+        <label for="syy">Yhteydenoton syy:</label>
+        <select id="syy" name="syy">
+          <option value="avunpyynto">Avunpyyntö</option>
+          <option value="muu">Muu</option></select
+        ><br /><br />
+
+        <label for="viesti">Viesti:</label>
+        <textarea name="viesti"></textarea>
+        <br />
+        <br />
+        <input type="submit" value="Lähetä" />
+      </fieldset>
+    </form>
+  </body>
+</html>
