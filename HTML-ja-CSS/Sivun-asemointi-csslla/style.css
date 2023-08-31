@@ -1,0 +1,104 @@
+/* Resetoidaan marginaali ja padding */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Yleiset tyylimääritykset */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(./therockissus.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Säiliö-elementti */
+#sailio {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Navigaatioelementit */
+#navi1,
+#navi2 {
+  max-width: 15%;
+  width: 100%;
+  background-color: #1070d2;
+  height: max-content;
+}
+
+#navi1 {
+  order: 1;
+}
+
+#navi2 {
+  order: 3;
+}
+
+/* Otsikot */
+h2 {
+  text-align: center;
+  background-color: #7dbcfa;
+  margin: 0;
+  padding: 1rem;
+  max-width: 100%;
+}
+
+/* Listat */
+li {
+  list-style-type: none;
+  margin-top: 1em;
+}
+
+ul {
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  margin: 0;
+}
+
+/* Linkkien normaali tila*/
+a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* Linkkien hover-tila */
+a:hover {
+  color: #7dbcfa;
+  text-decoration: underline;
+}
+
+/* Sisältö */
+#sisalto {
+  max-width: 65%;
+  width: 100%;
+  box-sizing: border-box;
+  order: 2;
+  padding: 2rem;
+  background-color: #f7f6f2c5;
+  border: 5px solid #1070d2;
+}
+
+#sisalto h1 {
+  text-align: center;
+}
+
+.nimi {
+  position: absolute;
+  background-color: #0000003b;
+  padding: 0.5em 1em;
+  z-index: -1;
+}
