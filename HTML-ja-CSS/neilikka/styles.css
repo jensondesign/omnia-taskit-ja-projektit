@@ -139,7 +139,7 @@ nav {
 /* Hero osion CSS */
 .hero {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   justify-content: center;
   padding: 2rem 1rem;
   box-sizing: border-box;
@@ -217,7 +217,7 @@ nav {
 }
 
 /* Kortti */
-.uutis-kortti {
+.kortti {
   /* Leiska */
   display: flex;
   flex-direction: column;
@@ -228,7 +228,7 @@ nav {
 }
 
 /* Kortin kuva */
-.uutis-kortti img {
+.kortti img {
   /* Leiska */
   width: 100%;
   align-self: stretch;
@@ -270,6 +270,53 @@ nav {
   line-height: 1.25rem;
 }
 
+.outlinedbtn {
+  /* Leiska */
+  display: inline-flex;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+
+  /* Tyylit */
+  border-radius: 0.375rem;
+  border: 2px solid var(--accent-color);
+
+  /* Typografia */
+  color: var(--text-color);
+  text-align: center;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+/* Tuotteiden osio */
+.tuotteet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.tuoteosionotsikko h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 2.5rem;
+  letter-spacing: -0.04rem;
+}
+
+.tuoteosionotsikko p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  max-width: 60ch;
+  margin-top: 1rem;
+}
 /* Media queryt */
 
 /* Responsiivinen menu ja mobiililaitteet */
