@@ -17,6 +17,8 @@
         $maakunta = $_POST['maakunta'];
         $lemmikit = isset($_POST['lemmikit']) ? implode(', ', $_POST['lemmikit']) : '';
         $kuvaus = $_POST['kuvaus'];
+        $osasto = $_POST['osasto'];
+        echo "<p>Osasto: $osasto</p>";
 
 
         // Tarkistetaan, että kaikki tähdellä merkityt kentät on täytetty
@@ -68,6 +70,8 @@
 
         <label for="kuvaus">Kuvaus: </label><br><br>
         <textarea name="kuvaus" cols="50" rows="4"></textarea><br><br>
+
+        <input type="hidden" name="osasto" value="Espoo">
 
         <input type="submit" value="Rekisteröidy">
     </form>
