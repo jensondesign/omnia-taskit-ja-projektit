@@ -15,7 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['kayttajatunnus'] = $kayttajatunnus;
 
     // Ohjaa käyttäjä takaisin etusivulle tai minne haluat
+<<<<<<< HEAD
     header('Location: etusivu.php');
+=======
+    header('Location: session-asettaminen.php');
+>>>>>>> f24702a1b500a2bd33b33924312be72c95d90f54
     exit();
 }
 ?>
@@ -27,18 +31,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navipalkki ja kirjautuminen</title>
+<<<<<<< HEAD
+=======
+    <style>
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+>>>>>>> f24702a1b500a2bd33b33924312be72c95d90f54
 </head>
 
 <body>
     <div class="navbar">
+<<<<<<< HEAD
         <a href="etusivu.php">Etusivu</a>
+=======
+        <a href="session-asettaminen.php">Etusivu</a>
+>>>>>>> f24702a1b500a2bd33b33924312be72c95d90f54
         <a href="tietoja.php">Tietoja</a>
         <?php
         // Tarkista kirjautumistila ja näytä linkki sen perusteella
         if ($kirjautunut) {
+<<<<<<< HEAD
             echo '<a href="profiili.php">Profiili</a>';
         } else {
             echo '<a href=".kirjautuminen.php">Kirjaudu</a>';
+=======
+            echo '<a href="oma-tili.php">Profiili</a>';
+        } else {
+            echo '<a href="kirjautuminen.php">Kirjaudu</a>';
+>>>>>>> f24702a1b500a2bd33b33924312be72c95d90f54
         }
         ?>
         <a href="yhteystiedot.php">Yhteystiedot</a>
