@@ -13,27 +13,26 @@ if ($conn->connect_error) {
     die("Yhteys tietokantaan epäonnistui: " . $conn->connect_error);
 }
 
-// Haku
+// Tarkistetaan, onko lomakkeelta saatu hakusana ja genre
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $elokuvan_nimi = $_POST["elokuvan_nimi"];
+    $genre = $_POST["genre"];
 
-    // Lisää prosenttimerkit (%) hakusanan alkuun ja loppuun
-    $elokuvan_nimi = '%' . $elokuvan_nimi . '%';
-
-    $sql = "SELECT title, description, rating, release_year
+    // Voit lisätä sekä hakusanan että genren käyttöä varten tietokantakyselyyn
+    $sql = "SELECT film.title, film.description, film.rating, film.release_year
             FROM film
-            WHERE title LIKE ?";
+            WHERE film.title LIKE '%$elokuvan_nimi%'
+            AND film.film_id IN (
+                SELECT film_id
+                FROM film_category
+                WHERE category_id = (
+                    SELECT category_id
+                    FROM category
+                    WHERE name = '$genre'
+                )
+            )";
 
-    // Valmistelee SQL-kyselyn käyttäen valmistettuja lausuntoja
-    $stmt = $conn->prepare($sql);
-
-    // Liittää hakusanan valmisteltuun lausuntoon
-    $stmt->bind_param("s", $elokuvan_nimi);
-
-    // Suorittaa valmistellun lausunnon
-    $stmt->execute();
-
-    $result = $stmt->get_result();
+    $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // Tulostetaan jokainen tulos omalle rivilleen
