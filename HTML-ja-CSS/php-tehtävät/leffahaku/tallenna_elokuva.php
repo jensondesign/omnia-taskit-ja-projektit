@@ -20,6 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Et täyttänyt kaikkia kenttiä!");
     }
 
+    // Tarkistetaan, onko "special_features" saatavilla POST-taulukossa
+    $special_features = isset($_POST["special_features"]) ? $_POST["special_features"] : array();
+
     //Tallenna lomakkeen tiedot tietokantaan
     $nimi = $_POST["nimi"];
     $kuvaus = $_POST["kuvaus"];
