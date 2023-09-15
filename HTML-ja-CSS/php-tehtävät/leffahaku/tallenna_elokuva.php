@@ -39,7 +39,8 @@ if (empty($nimi) || empty($kuvaus) || empty($julkaisuvuosi) || empty($kieli) || 
 
 // Esimerkki tietokantaan tallentamisesta (huomaa, että tämä on vain esimerkki):
 $special_features_str = implode(', ', $special_features);
-$sql = "INSERT INTO film (title, description, special_features) VALUES ('$nimi', '$kuvaus', '$special_features_str')";
+$sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features, last_update)
+        VALUES ('$nimi', '$kuvaus', '$julkaisuvuosi', '$kieli', '$vuokra_aika', '$vuokrahinta', '$kesto', '$korvaushinta', '$ikaraja', '$special_features_str', NOW())";
 // Suorita tietokantakysely
 if ($conn->query($sql) === TRUE) {
     echo "Elokuva tallennettu onnistuneesti.";
