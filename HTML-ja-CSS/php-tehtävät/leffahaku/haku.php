@@ -19,7 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genre = $_POST["genre"];
 
     // Voit lisätä sekä hakusanan että genren käyttöä varten tietokantakyselyyn
-    $sql = "SELECT film.title, film.description, film.rating, film.release_year
+    if (empty($genre)) {
+        $sql = "SELECT film.title, film.description, film.rating, film.release_year
+                FROM film
+                WHERE film.title LIKE '%$elokuvan_nimi%'";
+    } else {
+        $sql = "SELECT film.title, film.description, film.rating, film.release_year
             FROM film
             WHERE film.title LIKE '%$elokuvan_nimi%'
             AND film.film_id IN (
@@ -31,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     WHERE name = '$genre'
                 )
             )";
-
+    }
+    
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -56,7 +62,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Elokuvaa ei löytynyt.";
     }
-
-    // Sulje valmisteltu lausunto
-    $stmt->close();
 }
