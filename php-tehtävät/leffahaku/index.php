@@ -47,7 +47,7 @@
         <label for="nimi">Nimi:</label>
         <input type="text" name="nimi" id="nimi" required>
 
-        <br><br>
+        <br>
 
         <label for="kuvaus">Kuvaus:</label>
         <textarea name="kuvaus" id="kuvaus" cols="30" rows="10" required></textarea>
