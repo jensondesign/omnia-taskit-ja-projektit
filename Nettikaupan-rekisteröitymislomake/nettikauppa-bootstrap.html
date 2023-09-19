@@ -14,7 +14,11 @@
   <body>
     <div class="col-sm-12 col-md-9 col-xl-8 col-xxl-6 px-3 my-5 mx-auto">
       <h2 class="mb-3">Liity mukaan!</h2>
-      <form class="needs-validation" novalidate="">
+      <form
+        class="needs-validation"
+        novalidate=""
+        method="post"
+        action="rekisteroidy.php">
         <div class="row g-3">
           <div class="col-sm-6">
             <label for="firstName" class="form-label">Etunimi</label>
@@ -131,40 +135,7 @@
           </div>
         </div>
 
-        <hr class="my-4" />
-
-        <h4 class="mb-3">Mistä osastoista olet kiinnostunut?</h4>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="muoti" />
-          <label class="form-check-label" for="muoti">Muoti</label>
-        </div>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="urheilu" />
-          <label class="form-check-label" for="urheilu">Urheilu</label>
-        </div>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="sisustaminen" />
-          <label class="form-check-label" for="sisustaminen"
-            >Sisustaminen</label
-          >
-        </div>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="pelit" />
-          <label class="form-check-label" for="pelit">Pelit</label>
-        </div>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="elokuvat" />
-          <label class="form-check-label" for="elokuvat">Elokuvat</label>
-        </div>
-
-        <hr class="my-4" />
-
-        <h4 class="mb-3">Maksutapa</h4>
+        <h4 class="mb-3 mt-5">Maksutapa</h4>
 
         <div class="col-md-5">
           <label for="maksutapa" class="form-label">Maksutapa</label>
