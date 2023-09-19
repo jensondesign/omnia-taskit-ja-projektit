@@ -77,7 +77,14 @@
         <br><br>
 
         <label for="ikaraja">Ikäraja:</label>
-        <input type="number" name="ikaraja" id="ikaraja" required>
+        <select name="ikaraja" id="ikaraja" required>
+            <option value="g">G</option>
+            <option value="pg">PG</option>
+            <option value="pg">PG-13</option>
+            <option value="pg">R</option>
+            <option value="pg">NC-17</option>
+            <option value="pg">NC-17</option>
+        </select>
 
         <br><br>
 
