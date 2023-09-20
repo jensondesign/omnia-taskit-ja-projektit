@@ -2,43 +2,48 @@
 
 // Tarkista, onko lomake lähetetty
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Otetaan vastaan lomakkeen tiedot
-    $etunimi = $_POST["firstName"];
-    $sukunimi = $_POST["lastName"];
-    $kayttajanimi = $_POST["username"];
-    $salasana = password_hash($_POST["password"], PASSWORD_DEFAULT); // Salaa salasanan
-    $sahkoposti = $_POST["email"];
-    $osoite = $_POST["address"];
-    $asunnonnro = $_POST["address2"];
-    $maa = $_POST["country"];
-    $maakunta = $_POST["state"];
-    $postinumero = $_POST["zip"];
+    // Hae lomakkeen tiedot
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $username = $_POST["username"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+    $address2 = $_POST["address2"];
+    $country = $_POST["country"];
+    $state = $_POST["state"];
+    $zip = $_POST["zip"];
     $maksutapa = $_POST["maksutapa"];
     $palaute = $_POST["palaute"];
 
-    // Yhdistä tietokantaan oikein
-    $servername = "datasql2.westeurope.cloudapp.azure.com:8081"; // Korvaa oikealla tietokantapalvelimen osoitteella
-    $username = "millerje"; // Korvaa oikealla käyttäjänimellä
-    $password = "Yz!u,zpz^S4G%RZ"; // Korvaa oikealla salasanalla
-    $dbname = "neilikka";
+    // Määritä tietokannan tiedot suoraan
+    $azure_palvelin = "datasql2.westeurope.cloudapp.azure.com:6001"; // Korvaa oikealla tietokantapalvelimen osoitteella
+    $azure_kayttaja = "millerje"; // Korvaa oikealla käyttäjänimellä
+    $azure_salasana = "Yz!u,zpz^S4G%RZ"; // Korvaa oikealla salasanalla
+    $azure_tietokanta = "neilikka"; // Korvaa oikealla tietokannan nimellä
 
-    // Luo yhteys
-    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Yhdistä tietokantaan
+    $conn = new mysqli($azure_palvelin, $azure_kayttaja, $azure_salasana, $azure_tietokanta);
 
     // Tarkista yhteys
     if ($conn->connect_error) {
         die("Yhteys epäonnistui: " . $conn->connect_error);
     }
 
-    // Valmistele SQL-lauseke
-    $stmt = $conn->prepare("INSERT INTO users (etunimi, sukunimi, kayttajanimi, salasana, sahkoposti, osoite, asunnonnro, maa, maakunta, postinumero, maksutapa, palaute) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssssss", $etunimi, $sukunimi, $kayttajanimi, $salasana, $sahkoposti, $osoite, $asunnonnro, $maa, $maakunta, $postinumero, $maksutapa, $palaute);
+    // Valmista SQL-kysely
+    $sql = "INSERT INTO users (firstName, lastName, username, password, email, address, address2, country, state, zip, maksutapa, palaute)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssssssss", $firstName, $lastName, $username, $password, $email, $address, $address2, $country, $state, $zip, $maksutapa, $palaute);
 
     if ($stmt->execute()) {
-        echo "Rekisteröityminen onnistui!";
+        echo "Rekisteröinti onnistui!";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Rekisteröinti epäonnistui: " . $stmt->error;
     }
+
 
     // Sulje yhteys
     $stmt->close();
