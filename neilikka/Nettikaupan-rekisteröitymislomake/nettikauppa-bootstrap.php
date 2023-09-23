@@ -29,7 +29,6 @@
         <div class="col-12">
           <label for="username" class="form-label">Käyttäjänimi</label>
           <div class="input-group has-validation">
-            <span class="input-group-text">@</span>
             <input type="text" class="form-control" id="username" name="username" placeholder="Käyttäjänimi" required="" />
             <div class="invalid-feedback">Tämä on pakollinen</div>
           </div>

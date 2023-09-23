@@ -39,11 +39,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssssssssss", $firstName, $lastName, $username, $password, $email, $address, $address2, $country, $state, $zip, $maksutapa, $palaute);
 
     if ($stmt->execute()) {
+        $rekisteröinti_onnistui = true;
         echo "Rekisteröinti onnistui!";
     } else {
         echo "Rekisteröinti epäonnistui: " . $stmt->error;
     }
 
+    if ($rekisteröinti_onnistui) {
+        // Ohjaa käyttäjä etusivulle rekisteröinnin jälkeen
+        header("Location: ../etusivu.html");
+        exit;
+    }
 
     // Sulje yhteys
     $stmt->close();
