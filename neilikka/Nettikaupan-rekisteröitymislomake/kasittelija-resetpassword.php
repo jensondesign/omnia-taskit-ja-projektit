@@ -1,4 +1,7 @@
 <?php
+// Tietokannan tiedot
+$azure_palvelin = "datasql2.westeurope.cloudapp.azure.com:6001";
+
 // Tarkista, onko lomakkeen "nollaa" -painiketta painettu
 if (isset($_POST['nollaa'])) {
     // Otetaan yhteys tietokantaan (käytä mysqli)
