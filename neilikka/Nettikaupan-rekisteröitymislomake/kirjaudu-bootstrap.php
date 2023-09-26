@@ -29,6 +29,11 @@
                 <div class="invalid-feedback">Salasana on virheellinen</div>
             </div>
 
+            <!-- Salasanan nollaus linkki -->
+            <div class="col-12 my-3">
+                <a href="resetpassword.php">Unohditko salasanasi?</a>
+            </div>
+
             <hr class="my-4" />
 
             <button class="w-100 btn btn-primary btn-lg" type="submit">
