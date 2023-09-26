@@ -1,62 +1,54 @@
 <?php
-// Ota mukaan tietokantayhteys ja muita tarvittavia tiedostoja
-$azure_palvelin = "datasql2.westeurope.cloudapp.azure.com:6001"; // Korvaa oikealla tietokantapalvelimen osoitteella
-$azure_kayttaja = "millerje"; // Korvaa oikealla käyttäjänimellä
-$azure_salasana = "Yz!u,zpz^S4G%RZ"; // Korvaa oikealla salasanalla
-$azure_tietokanta = "neilikka"; // Korvaa oikealla tietokannan nimellä
+// Tarkista, onko lomakkeen "nollaa" -painiketta painettu
+if (isset($_POST['nollaa'])) {
+    // Otetaan yhteys tietokantaan (käytä mysqli)
+    $db = new mysqli('datasql2.westeurope.cloudapp.azure.com:6001', 'millerje', 'Yz!u,zpz^S4G%RZ', 'neilikka');
 
-// Yhdistä tietokantaan
-$conn = new mysqli($azure_palvelin, $azure_kayttaja, $azure_salasana, $azure_tietokanta);
-
-// Tarkista yhteys
-if ($conn->connect_error) {
-    die("Yhteys epäonnistui: " . $conn->connect_error);
-}
-
-// Ota mukaan tietokantayhteys ja muita tarvittavia tiedostoja
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Tarkista, että sähköposti on kelvollinen
-    $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
-    
-    if ($email === false) {
-        echo "Virheellinen sähköpostiosoite.";
-        exit;
+    // Tarkista yhteys
+    if ($db->connect_error) {
+        die("Yhteys epäonnistui: " . $db->connect_error);
     }
 
-    // Tarkista, onko sähköposti olemassa tietokannassa
-    $stmt = $conn->prepare("SELECT username, email FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    // Hae token URL-parametrista
+    $token = $_GET['token'];
+
+    // Tarkista, onko token voimassa ja sopii käyttäjälle
+    $query = "SELECT * FROM resetpassword_tokens WHERE token = ? AND voimassa > NOW()";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $token);
     $stmt->execute();
-    $stmt->store_result();
-    
-    if ($stmt->num_rows > 0) {
-        // Luo ainutlaatuinen nollauslinkin token 
-        $token = bin2hex(random_bytes(32));
+    $result = $stmt->get_result();
 
-        // Tallenna token, käyttäjän nimi ja timestamp tietokantaan
-        $stmt->bind_result($username, $email);
-        $stmt->fetch();
-        $stmt->close();
-        
-        $stmt = $conn->prepare("INSERT INTO resetpassword_tokens (username, email, token, voimassa) VALUES (?, ?, ?, NOW())");
-        $expiry = date("Y-m-d H:i:s", strtotime("+1 day"));
-        $stmt->bind_param("sss", $username, $email, $token);
-        $stmt->execute();
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        $users_id = $row['users_id'];
 
-        // Lähetä sähköposti käyttäjälle
-        $reset_link = "resetpassword.php?token=" . $token;
-        $subject = "Salasanan nollaus";
-        $message = "Nollaa salasanasi tästä linkistä: " . $reset_link;
+        // Hae salasana lomakkeelta
+        $new_password = $_POST['salasana'];
 
-        if (mail($email, $subject, $message)) {
-            echo "Sähköposti lähetetty. Tarkista sähköpostisi ja nollaa salasanasi.";
+        // Tarkista, että uusi salasana täyttää vaatimukset
+        if (strlen($new_password) >= 8) {
+            // Muuta uusi salasana hashiksi
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+            // Päivitä käyttäjän salasana tietokantaan
+            $update_query = "UPDATE users SET password = ? WHERE id = ?";
+            $update_stmt = $db->prepare($update_query);
+            $update_stmt->bind_param('si', $hashed_password, $users_id);
+            $update_stmt->execute();
+
+            // Poista token tietokannasta
+            $delete_query = "DELETE FROM resetpassword_tokens WHERE token = ?";
+            $delete_stmt = $db->prepare($delete_query);
+            $delete_stmt->bind_param('s', $token);
+            $delete_stmt->execute();
+
+            // Ohjaa käyttäjä kirjautumissivulle
+            header("Location: kirjaudu-bootstrap.php");
         } else {
-            echo "Virhe sähköpostin lähetyksessä.";
+            echo "Salasanan tulee olla vähintään 8 merkkiä pitkä";
         }
     } else {
-        echo "Sähköpostia ei löytynyt tietokannasta";
+        echo "Virheellinen tai vanhentunut token";
     }
-} else {
-    echo "Virheellinen pyyntö.";
 }
