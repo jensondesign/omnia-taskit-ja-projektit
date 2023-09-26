@@ -1,6 +1,9 @@
 <?php
 // Tietokannan tiedot
 $azure_palvelin = "datasql2.westeurope.cloudapp.azure.com:6001";
+$azure_kayttaja = "millerje";
+$azure_salasana = "Yz!u,zpz^S4G%RZ";
+$azure_tietokanta = "neilikka";
 
 // Tarkista, onko lomakkeen "nollaa" -painiketta painettu
 if (isset($_POST['nollaa'])) {
