@@ -13,20 +13,14 @@
 <body>
     <div class="col-sm-12 col-md-9 col-xl-8 col-xxl-6 px-3 my-5 mx-auto">
         <h2 class="mb-3">Salasanan Nollaus</h2>
-        <form class="needs-validation" novalidate="" method="post" action="Nettikaupan-rekisteröitymislomake/kasittelija_resetpassword.php">
-
-            <div class="col-12">
-                <label for="email" class="form-label">Sähköpostiosoite</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Sähköpostiosoite" required="" />
-                <div class="invalid-feedback">Tämä on pakollinen</div>
-            </div>
-
-            <hr class="my-4" />
-
-            <button class="w-100 btn btn-primary btn-lg" type="submit">
-                Lähetä Nollauslinkki
-            </button>
+        <form method="post" action="kasittelija_resetpassword.php">
+            <label for="salasana">Uusi salasana:</label>
+            <input type="password" name="salasana" required><br><br>
+            <label for="salasana_uudestaan">Kirjoita uusi salasana uudelleen:</label>
+            <input type="password" name="salasana_uudestaan" required><br><br>
+            <input type="submit" name="nollaa" value="Nollaa salasana">
         </form>
+        <hr class="my-4" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

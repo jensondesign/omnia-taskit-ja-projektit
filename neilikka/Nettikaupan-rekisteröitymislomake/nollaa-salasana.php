@@ -15,7 +15,7 @@
     <div class="col-sm-12 col-md-9 col-xl-8 col-xxl-6 px-3 my-5 mx-auto">
 
         <h2 class="mb-3">Nollaa Salasana</h2>
-        <form class="needs-validation" novalidate="" method="post" action="Nettikaupan-rekisteröitymislomake/kasittelija_resetpassword.php">
+        <form class="needs-validation" novalidate="" method="post" action="kasittelija_resetpassword.php">
 
             <div class="col-12">
                 <label for="new_password" class="form-label">Uusi Salasana</label>
