@@ -1,60 +1,64 @@
 <?php
-// Tietokannan tiedot
-$azure_palvelin = "datasql2.westeurope.cloudapp.azure.com:6001";
-$azure_kayttaja = "millerje";
-$azure_salasana = "Yz!u,zpz^S4G%RZ";
-$azure_tietokanta = "neilikka";
-
 // Tarkista, onko lomakkeen "nollaa" -painiketta painettu
 if (isset($_POST['nollaa'])) {
-    // Otetaan yhteys tietokantaan (käytä mysqli)
+    // Otetaan yhteys tietokantaan
     $db = new mysqli('datasql2.westeurope.cloudapp.azure.com:6001', 'millerje', 'Yz!u,zpz^S4G%RZ', 'neilikka');
 
-    // Tarkista yhteys
+    // Tarkista tietokantayhteys
     if ($db->connect_error) {
-        die("Yhteys epäonnistui: " . $db->connect_error);
+        die("Tietokantayhteyden virhe: " . $db->connect_error);
     }
 
-    // Hae token URL-parametrista
-    $token = $_GET['token'];
+    // Hae token lomakkeelta
+    $token = $_POST['token'];
 
-    // Tarkista, onko token voimassa ja sopii käyttäjälle
-    $query = "SELECT * FROM resetpassword_tokens WHERE token = ? AND voimassa > NOW()";
+    // Hae users_id liittämällä tokenin käyttäjään
+    $query = "SELECT user_id FROM resetpassword_tokens WHERE token = ? AND voimassa > NOW()";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('s', $token);
+    $stmt->bind_param("s", $token);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt->store_result();
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $users_id = $row['users_id'];
+    if ($stmt->num_rows == 1) {
+        $stmt->bind_result($user_id);
+        $stmt->fetch();
 
-        // Hae salasana lomakkeelta
+        // Lisää token ja voimassaoloaika resetpassword_tokens-tauluun
+        $token = bin2hex(random_bytes(32));
+        $voimassaoloaika = date('Y-m-d H:i:s', strtotime('+1 hour')); // Token on voimassa esimerkiksi 1 tunti
+        $query = "INSERT INTO resetpassword_tokens (user_id, token, voimassa) VALUES (?, ?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("iss", $user_id, $token, $voimassaoloaika);
+        $stmt->execute();
+
+
+        // Hae ja tarkista uusi salasana
         $new_password = $_POST['salasana'];
+        $confirm_password = $_POST['salasana_uudestaan'];
 
-        // Tarkista, että uusi salasana täyttää vaatimukset
-        if (strlen($new_password) >= 8) {
-            // Muuta uusi salasana hashiksi
+        if ($new_password === $confirm_password) {
+            // Muuta uusi salasana hash-muotoon
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-            // Päivitä käyttäjän salasana tietokantaan
+            // Päivitä uusi salasana users-tauluun
             $update_query = "UPDATE users SET password = ? WHERE id = ?";
             $update_stmt = $db->prepare($update_query);
-            $update_stmt->bind_param('si', $hashed_password, $users_id);
+            $update_stmt->bind_param("si", $hashed_password, $user_id);
             $update_stmt->execute();
 
-            // Poista token tietokannasta
+            // Poista token resetpassword_tokens-taulusta
             $delete_query = "DELETE FROM resetpassword_tokens WHERE token = ?";
             $delete_stmt = $db->prepare($delete_query);
-            $delete_stmt->bind_param('s', $token);
+            $delete_stmt->bind_param("s", $token);
             $delete_stmt->execute();
 
-            // Ohjaa käyttäjä kirjautumissivulle
-            header("Location: kirjaudu-bootstrap.php");
+            // Ohjaa käyttäjä login.php-sivulle
+            header("Location: kirjaudusisaan-lomake.php");
+            exit();
         } else {
-            echo "Salasanan tulee olla vähintään 8 merkkiä pitkä";
+            echo "Salasanat eivät täsmää.";
         }
     } else {
-        echo "Virheellinen tai vanhentunut token";
+        echo "Virheellinen tai vanhentunut token.";
     }
 }
