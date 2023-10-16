@@ -2,4 +2,6 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
+    "appService.defaultWebAppToDeploy": "/subscriptions/7d7b2923-d99f-46cd-bc6b-ca6c7ca1861a/resourceGroups/WebOhjelmointi3/providers/Microsoft.Web/sites/millerje",
+    "appService.deploySubpath": "neilikka-2.0",
 }
