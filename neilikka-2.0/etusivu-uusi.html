@@ -1,57 +1,295 @@
 <!DOCTYPE html>
-<html lang="en">
-  <!DOCTYPE html>
-  <html lang="fi">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <!-- Favicon ja sivun nimi -->
-      <link
-        rel="icon"
-        href="./kuvat/logo-tiedostot/favicon.ico"
-        type="image/x-icon" />
-      <title>Neilikka - Etusivu</title>
+    <!-- Favicon ja sivun nimi -->
+    <link
+      rel="icon"
+      href="./kuvat/logo-tiedostot/favicon.ico"
+      type="image/x-icon" />
+    <title>Neilikka - Etusivu</title>
 
-      <!-- CSS-tiedostot -->
-      <link rel="stylesheet" href="./styles.css" />
+    <!-- CSS-tiedostot -->
+    <link rel="stylesheet" href="./styles.css" />
 
-      <!-- Font-familyt -->
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-        rel="stylesheet" />
+    <!-- Scripts -->
+    <script src="./scripts.js" defer></script>
 
-      <!-- Ikonit -->
-      <script
-        src="https://kit.fontawesome.com/c106b9d31e.js"
-        crossorigin="anonymous"></script>
-    </head>
-    <body>
-      <nav>
-        <div class="container-mobile">
-          <div class="nav">
-            <div class="nav-logo">
-              <a href="./etusivu-uusi.html" class="logo-link"
-                ><img
-                  src="./kuvat/logo-tiedostot/Original-Icon-on-Transparent.png"
-                  width="45"
-                  alt=""
-              /></a>
-            </div>
-            <div class="nav-hamburger" id="hamppis">
-                <i class="fa-solid fas fa-bars" style="color: var(--text-color);"></i>
-            </div>
+    <!-- Font-familyt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet" />
+
+    <!-- Ikonit -->
+    <script
+      src="https://kit.fontawesome.com/c106b9d31e.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="nav">
+          <div class="nav-logo">
+            <a href="./etusivu-uusi.html" class="logo-link"
+              ><img
+                src="./kuvat/logo-tiedostot/Original-Icon-on-Transparent.png"
+                width="45"
+                alt=""
+            /></a>
+          </div>
+          <div class="nav-hamburger" id="hamppis">
+            <i
+              class="fa-solid fas fa-bars"
+              style="color: var(--text-color)"></i>
+          </div>
+
+          <div class="nav-overlay">
+            <div class="nav-links-container" id="nav-links-container">
               <ul class="nav-links">
-                <li><a href="./etusivu-uusi.html" class="btn btn--nav">Etusivu</a></li>
-                <li><a href="./tuotteet-uusi.html" class="btn btn--nav">Tuotteet</a></li>
-                <li><a href="./yhteystiedot-uusi.html" class="btn btn--nav">Yhteystiedot</a></li>
-                <li><a href="./tietoa-meista-uusi.html" class="btn btn--nav">Tietoa meistä</a></li>
-                
+                <li>
+                  <a href="./etusivu-uusi.html" class="btn--nav">Etusivu</a>
+                </li>
+                <li>
+                  <a href="./tuotteet-uusi.html" class="btn--nav">Tuotteet</a>
+                </li>
+                <li>
+                  <a href="./yhteystiedot-uusi.html" class="btn--nav"
+                    >Yhteystiedot</a
+                  >
+                </li>
+                <li>
+                  <a href="./tietoa-meista-uusi.html" class="btn--nav"
+                    >Tietoa meistä</a
+                  >
+                </li>
               </ul>
+              <ul class="action-container nav-links">
+                <li>
+                  <a href="#" class="btn btn--tertiary--md">Rekisteröidy</a>
+                </li>
+                <li>
+                  <a href="./sign-in.html" class="btn btn--primary--md">Kirjaudu</a>
+                </li>
+              </ul>
+              <div class="nav-close-container">
+                <i class="fas fa-arrow-up fa-xl nav-close" id="nav-close"></i>
+              </div>
+            </div>
+          </div>
         </div>
-      </nav>
-    </body>
-  </html>
+      </div>
+    </nav>
+    <main>
+      <section aria-labelledby="intro-h1">
+        <div class="hero-container">
+          <div class="section-intro">
+            <h1 class="hero-heading" id="intro-h1">Puutarhaliike Neilikka</h1>
+            <p class="hero-paragraph">
+              Tervetuloa Puutarhaliike Neilikan kotisivuille! Meiltä löydät sekä
+              sisä- että ulkokasvit ja kaiken tarvitsemasi kasvien hoitoon.
+            </p>
+            <a href="./tuotteet-uusi.html" class="btn btn--primary--lg"
+              >Tutustu tuotteisiin</a
+            >
+          </div>
+          <img
+            src="./kuvat/julia-knh2IwCyD60-unsplash-hero-kuva.jpg"
+            alt="neilikkakimppu"
+            class="hero-image" />
+        </div>
+      </section>
+
+      <section aria-labelledby="tuotteet">
+        <div class="container-mobile tuotteet">
+          <div class="section-intro">
+            <h2 class="section-heading" id="tuotteet">Tuotteet</h2>
+            <p class="section-paragraph">
+              Tuotevalikoimaamme kuuluu sisäkasveja, ulkokasveja sekä työkaluja
+              ja muita tarvikkeita kasvien hoitoon.
+            </p>
+          </div>
+        </div>
+        <div class="cards-container">
+          <div class="card">
+            <img
+              src="./kuvat/cristina-carrillo-sisakasvit-(1).png"
+              alt="kuva sisäkasveista"
+              loading="lazy"
+              class="card-image" />
+            <div class="card-content">
+              <h3 class="card-heading">Sisäkasvit</h3>
+              <p class="card-paragraph">
+                Sisäkasvit ovat viherkasveja, jotka sopivat erinomaisesti
+                sisätiloihin tuoden luonnollista vihreyttä ja raikasta ilmaa.
+              </p>
+              <a href="./tuotteet-uusi.html" class="btn btn--primary--md"
+                >Tutustu tuotteisiin</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./kuvat/elias-morr-ulkokasvit.jpg"
+              alt="kortin kuva ulkokasveista - kädet pitää kulhollista juureksia. Taustalla pieni pläntti."
+              loading="lazy"
+              class="card-image" />
+            <div class="card-content">
+              <h3 class="card-heading">Ulkokasvit</h3>
+              <p class="card-paragraph">
+                Sisäkasvit ovat viherkasveja, jotka sopivat erinomaisesti
+                sisätiloihin tuoden luonnollista vihreyttä ja raikasta ilmaa.
+              </p>
+              <a href="./tuotteet-uusi.html" class="btn btn--primary--md"
+                >Tutustu tuotteisiin</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="./kuvat/eco-warrior-princess-valineet-kasvien-hoitoon.jpg"
+              alt="kortin kuva kasvihuoneen sisältä"
+              loading="lazy"
+              class="card-image" />
+            <div class="card-content">
+              <h3 class="card-heading">Työkalut ja muut tarvikkeet</h3>
+              <p class="card-paragraph">
+                Laadukkaat työkalumme ja tarvikkeemme tekevät kasvien hoidosta
+                helppoa ja tehokasta, auttaen sinua luomaan vihreämmän ja
+                rehevämmän puutarhan.
+              </p>
+              <a href="./tuotteet-uusi.html" class="btn btn--primary--md"
+                >Tutustu tuotteisiin</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="contact" class="contact">
+        <div class="contact-container">
+          <div class="section-intro">
+            <h2 class="section-heading" id="contact">Yhteystiedot</h2>
+            <p class="section-paragraph">
+              Puutarhaliike Neilikalla on myymälät Helsingissä ja Espoossa.
+              Tervetuloa tutustumaan!
+            </p>
+          </div>
+          <div class="cards-container">
+            <div class="card-content">
+              <h3 class="card-heading">Helsinki</h3>
+              <address class="card-paragraph">
+                Puutarhaliike Neilikka <br />
+                Fabianinkatu 42 <br />
+                00100 Helsinki <br />
+                Puh. 09 123 4567 <br />
+                helsinki@puutarhaliikeneilikka.fi
+              </address>
+            </div>
+            <div class="card-content">
+              <h3 class="card-heading">Espoo</h3>
+              <address class="card-paragraph">
+                Puutarhaliike Neilikka <br />
+                Kivenlahdentie 10 <br />
+                01234 Espoo <br />
+                Puh. 09 123 4567 <br />
+                espoo@puutarhaliikeneilikka.fi
+              </address>
+            </div>
+            <div class="card-content">
+              <h3 class="card-heading">Aukioloajat</h3>
+              <p class="card-paragraph">
+                ma-ke <time>9-17</time> <br />
+                la <time>12-18</time>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="contact-form">
+        <div class="container-mobile">
+          <div class="form-container" id="contact-form">
+            <form class="contact-form" action="submit-form.php" method="POST">
+              <div class="name-container">
+                <div class="input-container">
+                  <label for="first-name">Etunimi:</label>
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="first-name"
+                    required />
+                </div>
+
+                <div class="input-container">
+                  <label for="last-name">Sukunimi:</label>
+                  <input type="text" id="last-name" name="last-name" required />
+                </div>
+              </div>
+              <div class="input-container">
+                <label for="email">Sähköposti:</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="input-container">
+                <label for="subject">Aihe:</label>
+                <select class="subject" id="subject" name="subject" required>
+                  <option value="kysymys-tuotteista">Kysymys tuotteista</option>
+                  <option value="tilaus">Tilaus</option>
+                  <option value="yhteydenottopyynto">Yhteydenottopyyntö</option>
+                  <option value="muu">Muu</option>
+                </select>
+              </div>
+
+              <div class="input-container">
+                <label for="message">Viesti:</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required></textarea>
+              </div>
+
+              <div class="input-container">
+                <label for="newsletter"
+                  >Haluan tilata Puutarhaliike Neilikan uutiskirjeen:</label
+                >
+                <input
+                  type="checkbox"
+                  id="newsletter"
+                  name="newsletter"
+                  value="yes" />
+              </div>
+              <button type="submit" class="btn--primary--md btn">Lähetä</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="about-us">
+        <div class="about-us-container">
+          <div class="about-intro">
+            <h2 class="section-heading about-heading" id="about-us">
+              Tietoa meistä
+            </h2>
+            <p class="section-paragraph about-paragraph">
+              Puutarhaliike Neilikka on vuonna 1990 perustettu puutarhanhoitoon
+              ja huonekasveihin erikoistunut myymäläketju. Ensimmäinen
+              myymälämme perustettiin Helsingin Fabianinkadulle, ja toukokuussa
+              1997 perustimme ketjun toisen myymälän Espooseen. Meiltä löydät
+              kattavan valikoiman sisä- ja ulkokasveja sekä tietysti kaikki
+              työkalut ja muut tarvikkeet niiden hoitoon. Osaava ja
+              puutarhanhoidosta innostunut henkilökuntamme on aina valmiina
+              auttamaan sinua valitsemaan juuri sinulle sopivimmat tuotteet.
+            </p>
+          </div>
+          <img
+            src="./kuvat/christin-noelle-636RsYOIHW8-unsplash-about.jpg"
+            alt="nainen katselemassa kukkia ulkona puutarhaliikkeen pihassa"
+            loading="lazy"
+            class="about-image" />
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

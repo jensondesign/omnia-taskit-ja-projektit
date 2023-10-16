@@ -1,0 +1,143 @@
+.contact {
+  background-color: var(--primary-900);
+  margin-top: 2rem;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1216px;
+  padding: 2rem 0.625rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-container * {
+  color: var(--generic-white);
+}
+
+.contact-container .section-intro {
+  justify-content: flex-start;
+}
+
+.contact-container .card-content {
+  padding: 0;
+  justify-content: flex-start;
+}
+
+.contact-container .cards-container {
+  padding: 0;
+  justify-content: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 520px) {
+  .contact-container .cards-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-container .section-intro * {
+    text-align: center;
+  }
+}
+
+.form-container {
+  display: flex;
+  width: 100%;
+  max-width: 43.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1216px;
+  flex-wrap: wrap;
+}
+
+.contact-form label {
+  color: var(--neutral-900);
+
+  /* Paragraph/Small/Medium */
+  font-family: var(--body-font);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.name-container {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.name-container * {
+  flex: 1;
+}
+
+@media screen and (max-width: 400px){
+  .name-container {
+    flex-direction: column;
+  }
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  /* Leiska */
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  align-items: center;
+  align-self: stretch;
+  margin: 0;
+
+  /* Tyyli */
+  background: var(--generic-white);
+  border: 1px solid var(--neutral-200);
+  border-radius: 0.375rem;
+
+  /* Drop shadow/XSmall */
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.04);
+}
+
+.contact-form button {
+  border: none;
+  font-family: var(--body-font);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.contact-form #newsletter {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.input-container * {
+  width: 100%;
+}
+
+.subject {
+  /* Leiska */
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  align-items: center;
+  align-self: stretch;
+  margin: 0;
+
+  /* Tyyli */
+  background: var(--generic-white);
+  border: 1px solid var(--neutral-200);
+  border-radius: 0.375rem;
+
+  /* Drop shadow/XSmall */
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.04);
+}
