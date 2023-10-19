@@ -51,29 +51,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $pdo = new PDO("mysql:host=$azure_palvelin;dbname=$azure_tietokanta", $azure_kayttaja, $azure_salasana);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
         // Generate confirmation token
         $confirmation_token = bin2hex(random_bytes(16));
-    
+
         // Insert user into database with confirmation token
         $sql = "INSERT INTO users (email, password, confirmation_token) VALUES (:email, :password, :confirmation_token)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
+
+        // Generate confirmation token
+        $confirmation_token = bin2hex(random_bytes(16));
         $stmt->bindParam(':confirmation_token', $confirmation_token);
-    
+
         $stmt->execute();
-    
+
         // Send verification email
         $to = $email;
         $subject = 'Vahvista sähköpostiosoitteesi';
-        $message = "Paina alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi: https://example.com/verify.php?token=$confirmation_token";
+        $message = "Paina alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi: myapp://verify?token=$confirmation_token";
         $headers = 'From: webmaster@example.com' . "\r\n" .
             'Reply-To: webmaster@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
-    
+
         mail($to, $subject, $message, $headers);
-    
+
         echo "Rekisteröinti onnistui! Tarkista sähköpostisi vahvistaaksesi tilisi.";
     } catch (PDOException $e) {
         die("Rekisteröinti epäonnistui: " . $e->getMessage());
