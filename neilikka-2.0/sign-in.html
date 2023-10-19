@@ -1,11 +1,171 @@
 <!DOCTYPE html>
+
 <html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon ja sivun nimi -->
+    <link
+      rel="icon"
+      href="./kuvat/logo-tiedostot/favicon.ico"
+      type="image/x-icon" />
+
+    <title>Kirjaudu sisään</title>
+
+    <!-- Font-familyt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="./sign-in.css" />
+
+    <!-- Ikonit -->
+    <script
+      src="https://kit.fontawesome.com/c106b9d31e.js"
+      crossorigin="anonymous"></script>
+
+    <!-- Javascript -->
+    <script src="./sign-in.js" defer></script>
+    <script src="./scripts.js" defer></script>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="nav">
+          <div class="nav-logo">
+            <a href="./etusivu-uusi.html" class="logo-link"
+              ><img
+                src="./kuvat/logo-tiedostot/Original-Icon-on-Transparent.png"
+                width="45"
+                alt=""
+            /></a>
+          </div>
+          <div class="nav-hamburger" id="hamppis">
+            <i
+              class="fa-solid fas fa-bars"
+              style="color: var(--text-color)"></i>
+          </div>
+
+          <div class="nav-overlay">
+            <div class="nav-links-container" id="nav-links-container">
+              <ul class="nav-links">
+                <li>
+                  <a href="./etusivu-uusi.html" class="btn--nav">Etusivu</a>
+                </li>
+                <li>
+                  <a href="./tuotteet-uusi.html" class="btn--nav">Tuotteet</a>
+                </li>
+                <li>
+                  <a href="./yhteystiedot-uusi.html" class="btn--nav"
+                    >Yhteystiedot</a
+                  >
+                </li>
+                <li>
+                  <a href="./tietoa-meista-uusi.html" class="btn--nav"
+                    >Tietoa meistä</a
+                  >
+                </li>
+              </ul>
+              <ul class="action-container nav-links">
+                <li>
+                  <a href="#" class="btn btn--tertiary--md">Rekisteröidy</a>
+                </li>
+                <li>
+                  <a href="./sign-in.html" class="btn btn--primary--md"
+                    >Kirjaudu</a
+                  >
+                </li>
+              </ul>
+              <div class="nav-close-container">
+                <i class="fas fa-arrow-up fa-xl nav-close" id="nav-close"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-container">
+      <div class="container">
+        <!-- Login form -->
+
+        <div class="title-text">
+          <div class="title login">
+            <h1>Kirjaudu sisään</h1>
+          </div>
+          <div class="title signup">
+            <h1>Luo tili</h1>
+          </div>
+        </div>
+        <div class="form-container">
+          <div class="slide-controls">
+            <input type="radio" name="slide" id="login" checked />
+            <input type="radio" name="slide" id="signup" />
+            <label for="login" class="slide login">Kirjaudu sisään</label>
+            <label for="signup" class="slide signup">Luo tili</label>
+            <div class="slider-tab"></div>
+          </div>
+          <div class="form-inner">
+            <form action="#" class="login">
+              <div class="field">
+                <input type="text" placeholder="Sähköposti" required />
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Salasana" required />
+              </div>
+              <div class="pass-link">
+                <a href="#">Unohtuiko salasana?</a>
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Kirjaudu sisään" />
+              </div>
+              <div class="signup-link">
+                Eikö sinulla ole tiliä? <a href="">Luo tili</a>
+              </div>
+            </form>
+            <form
+              name="signInForm"
+              method="post"
+              onsubmit="return validateForm()"
+              action="register.php"
+              class="signup">
+              <div class="field">
+                <input
+                  name="email"
+                  type="text"
+                  id="email"
+                  placeholder="Sähköposti"
+                  required />
+              </div>
+              <div class="field">
+                <input
+                  name="password"
+                  type="password"
+                  id="password"
+                  placeholder="Salasana"
+                  required />
+              </div>
+              <div class="field">
+                <input
+                  name="confirm_password"
+                  type="password"
+                  id="confirm_password"
+                  placeholder="Vahvista salasana"
+                  required />
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Luo tili" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
