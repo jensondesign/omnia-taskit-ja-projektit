@@ -1,4 +1,5 @@
-
+@import url("./nav-overlay.css");
+@import url("./nav-animations.css");
 
 * {
   margin: 0;
